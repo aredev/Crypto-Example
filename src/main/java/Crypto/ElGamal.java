@@ -9,7 +9,7 @@ import java.security.SecureRandom;
  * Example code for encryption using ElGamal
  * Created by abdullah on 13/04/2017.
  */
-public class ElGamalEncryptionTest {
+public class ElGamal {
 
     private Cipher cipher;
     private SecureRandom random;
@@ -17,7 +17,7 @@ public class ElGamalEncryptionTest {
     /**
      * Sets up the system, generates a keypair and starts the encryption/decryption functions. s
      */
-    public ElGamalEncryptionTest() {
+    public ElGamal() {
         try {
             random = new SecureRandom();
             KeyPairGenerator kpg = KeyPairGenerator.getInstance("ElGamal", "BC");

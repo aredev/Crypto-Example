@@ -8,12 +8,12 @@ import java.security.Signature;
  * Example code for signature example, using ECDSA
  * Created by abdullah on 13/04/2017.
  */
-public class SignatureTest {
+public class ECDSA {
 
     /**
      * Constructor, creates a keypair and start the signature creation and verification.
      */
-    public SignatureTest() {
+    public ECDSA() {
 
         KeyPair pair;
         try {
