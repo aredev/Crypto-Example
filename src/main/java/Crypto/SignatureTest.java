@@ -52,8 +52,4 @@ public class SignatureTest {
             e.printStackTrace();
         }
     }
-
-    public void encrypt(){
-
-    }
 }
