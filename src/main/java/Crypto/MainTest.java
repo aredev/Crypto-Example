@@ -1,5 +1,7 @@
 package Crypto;
 
+import Tests.Test;
+
 import java.security.Security;
 
 /**
@@ -10,8 +12,7 @@ public class MainTest {
     public static void main(String[] args) {
         Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
 
-        new ECDSA();
-        new ElGamal();
+        new Test();
     }
 
 }
