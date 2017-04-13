@@ -30,7 +30,7 @@ public class ElGamalEncryptionTest {
             String input = "je moeder is een hoer.";
             byte[] c = encrypt(input, pair);
             System.out.println("Length of ciphertext " + c.length);
-            String i = decrypt(c, pair);
+            String i = new String(decrypt(c, pair));
             System.out.println(input.equals(i));
 
         } catch (Exception e) {
@@ -63,19 +63,20 @@ public class ElGamalEncryptionTest {
      * Function to decrypt the ciphertext
      * @param ciphertext : to decrypt
      * @param pair : keypair used to decrypt a message
-     * @return string of the decrypted ciphertexts
+     * @return byte array of the decrypted ciphertexts
      */
-    public String decrypt(byte[] ciphertext, KeyPair pair){
+    public byte[] decrypt(byte[] ciphertext, KeyPair pair){
         try {
             cipher.init(Cipher.DECRYPT_MODE, pair.getPrivate());
             byte[] plainText = cipher.doFinal(ciphertext);
             System.out.println("Decrypted text is " + new String(plainText));
-            return new String(plainText);
+            return plainText;
 
         } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
     }
+
 
 }
