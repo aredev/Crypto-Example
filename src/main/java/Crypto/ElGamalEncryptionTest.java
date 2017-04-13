@@ -1,11 +1,12 @@
 package Crypto;
 
-import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
-import javax.crypto.IllegalBlockSizeException;
-import java.security.*;
+import java.security.KeyPair;
+import java.security.KeyPairGenerator;
+import java.security.SecureRandom;
 
 /**
+ * Example code for encryption using ElGamal
  * Created by abdullah on 13/04/2017.
  */
 public class ElGamalEncryptionTest {
@@ -13,6 +14,9 @@ public class ElGamalEncryptionTest {
     private Cipher cipher;
     private SecureRandom random;
 
+    /**
+     * Sets up the system, generates a keypair and starts the encryption/decryption functions. s
+     */
     public ElGamalEncryptionTest() {
         try {
             random = new SecureRandom();
@@ -35,6 +39,12 @@ public class ElGamalEncryptionTest {
 
     }
 
+    /**
+     * Encrypt a given message.
+     * @param input : message to encrypt
+     * @param pair : keypair used to encrypt
+     * @return byte array of the ciphertext
+     */
     public byte[] encrypt(String input, KeyPair pair){
         try {
             cipher.init(Cipher.ENCRYPT_MODE, pair.getPublic(), random);
@@ -49,6 +59,12 @@ public class ElGamalEncryptionTest {
 
     }
 
+    /**
+     * Function to decrypt the ciphertext
+     * @param ciphertext : to decrypt
+     * @param pair : keypair used to decrypt a message
+     * @return string of the decrypted ciphertexts
+     */
     public String decrypt(byte[] ciphertext, KeyPair pair){
         try {
             cipher.init(Cipher.DECRYPT_MODE, pair.getPrivate());

@@ -2,14 +2,17 @@ package Crypto;
 
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
-import java.security.Security;
 import java.security.Signature;
 
 /**
+ * Example code for signature example, using ECDSA
  * Created by abdullah on 13/04/2017.
  */
 public class SignatureTest {
 
+    /**
+     * Constructor, creates a keypair and start the signature creation and verification.
+     */
     public SignatureTest() {
 
         KeyPair pair;
@@ -25,6 +28,12 @@ public class SignatureTest {
     }
 
 
+    /**
+     * Signs a message
+     * @param plaintext : message to sign
+     * @param pair : keypair used to sign
+     * @return byte array of signature, null in case of failure
+     */
     public byte[] sign(String plaintext, KeyPair pair){
         Signature ecdsaSign = null;
         try {
@@ -40,7 +49,13 @@ public class SignatureTest {
         }
     }
 
-    public void verify(KeyPair pair, byte[] signature, String data){
+    /**
+     * Verify a given signature
+     * @param pair : keypair used for verification
+     * @param signature : signature to verify
+     * @param data : data (ie. original text) to use in verification, which can be used afterwards
+     */
+    public boolean verify(KeyPair pair, byte[] signature, String data){
         Signature ecdsaVerify = null;
         try {
             ecdsaVerify = Signature.getInstance("SHA3-512withECDSA", "BC");
@@ -48,8 +63,10 @@ public class SignatureTest {
             ecdsaVerify.update(data.getBytes("UTF-8"));
             boolean result = ecdsaVerify.verify(signature);
             System.out.println(result);
+            return result;
         } catch (Exception e) {
             e.printStackTrace();
+            return false;
         }
     }
 }
