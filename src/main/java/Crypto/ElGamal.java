@@ -19,14 +19,13 @@ public class ElGamal {
      * @param pair : keypair used to encrypt
      * @return byte array of the ciphertext
      */
-    public static byte[] encrypt(String input, KeyPair pair){
+    public static byte[] encrypt(byte[] input, KeyPair pair){
         try {
 
             SecureRandom random = new SecureRandom();
             Cipher cipher = Cipher.getInstance(CIPHERMODE, "BC");
             cipher.init(Cipher.ENCRYPT_MODE, pair.getPublic(), random);
-            byte[] ciphertext = cipher.doFinal(input.getBytes());
-            return ciphertext;
+            return cipher.doFinal(input);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -45,8 +44,7 @@ public class ElGamal {
         try {
             Cipher cipher = Cipher.getInstance(CIPHERMODE, "BC");
             cipher.init(Cipher.DECRYPT_MODE, pair.getPrivate());
-            byte[] plainText = cipher.doFinal(ciphertext);
-            return plainText;
+            return cipher.doFinal(ciphertext);
 
         } catch (Exception e) {
             e.printStackTrace();

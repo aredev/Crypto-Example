@@ -31,7 +31,7 @@ public class KeyGeneration {
      * @param keysize : size of the keys
      * @return the keypair
      */
-    public static KeyPair generateElGamalKeys(int keysize){
+    public static KeyPair generateElGamalKeys(short keysize){
         try {
             SecureRandom random = new SecureRandom();
             KeyPairGenerator kpg = KeyPairGenerator.getInstance("ElGamal", "BC");

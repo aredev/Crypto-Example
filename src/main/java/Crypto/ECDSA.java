@@ -21,8 +21,7 @@ public class ECDSA {
             ecdsaSign = Signature.getInstance("SHA3-512withECDSA", "BC");
             ecdsaSign.initSign(pair.getPrivate());
             ecdsaSign.update(plaintext.getBytes("UTF-8"));
-            byte[] signature = ecdsaSign.sign();
-            return signature;
+            return ecdsaSign.sign();
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -35,14 +34,13 @@ public class ECDSA {
      * @param signature : signature to verify
      * @param data : data (ie. original text) to use in verification, which can be used afterwards
      */
-    public static boolean verify(KeyPair pair, byte[] signature, String data){
+    public static boolean verify(KeyPair pair, byte[] signature, byte[] data){
         Signature ecdsaVerify = null;
         try {
             ecdsaVerify = Signature.getInstance("SHA3-512withECDSA", "BC");
             ecdsaVerify.initVerify(pair.getPublic());
-            ecdsaVerify.update(data.getBytes("UTF-8"));
-            boolean result = ecdsaVerify.verify(signature);
-            return result;
+            ecdsaVerify.update(data);
+            return ecdsaVerify.verify(signature);
         } catch (Exception e) {
             e.printStackTrace();
             return false;
